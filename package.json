@@ -1,0 +1,24 @@
+{
+	"name": "fcc-timestamp-microservice",
+	"version": "0.0.1",
+	"description": "FreeCodeCamp: Timestamp Microservice",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/plause/fcc-timestamp-microservice.git"
+	},
+	"keywords": [
+		"freecodecamp",
+		"timestamp",
+		"microservice"
+	],
+	"author": "Huazhou Wang <plause@gmail.com>",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/plause/fcc-timestamp-microservice/issues"
+	},
+	"homepage": "https://github.com/plause/fcc-timestamp-microservice#readme"
+}
