@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Timestamp Microservice</title>
+	</head>
+	<body>
+		<h1>Timestamp Microservice</h1>
+		<blockquote>
+			<p>User stories:</p>
+			<ul>
+				<li>I can pass a string as a parameter, and it will check to see whether that string
+					contains either a unix timestamp or a natural language date (example: January 1,
+					2016)</li>
+				<li>If it does, it returns both the Unix timestamp and the natural language form of that
+					date.</li>
+				<li>If it does not contain a date or Unix timestamp, it returns null for those
+					properties</li>
+			</ul>
+		</blockquote>
+		<h2>Example usage:</h2>
+		<p><code>https://fcc-plause-timestamp.herokuapp.com/March%2029,%202016</code></p>
+		<p><code>https://fcc-plause-timestamp.herokuapp.com/1459209600</code></p>
+		<h2>Example output:</h2>
+		<p><code>{"unix":1459209600,"natural":"March 29, 2016"}</code></p>
+	</body>
+</html>
