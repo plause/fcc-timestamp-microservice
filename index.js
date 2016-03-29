@@ -1,3 +1,4 @@
+var fs = require('fs');
 var http = require('http');
 var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 var isUnix = /^[1-9][0-9]*$/;
@@ -38,4 +39,16 @@ function serveTimestampMicroservice(req, res) {
 	res.end(JSON.stringify(output || badParameterOutput));
 }
 
-http.createServer(serveTimestampMicroservice).listen(process.env.PORT || 5000);
+fs.readFile(__dirname + '/public/index.html', 'utf8', function (err, data) {
+	if (!err) {
+		http.createServer(function (req, res) {
+			if (req.url === '/') {
+				res.setHeader('Content-Type', 'text/html; charset=utf-8');
+				res.end(data);
+			} else {
+				res.setHeader('Content-Type', 'application/json; charset=utf-8');
+				serveTimestampMicroservice(req, res);
+			}
+		}).listen(process.env.PORT || 5000);
+	}
+});
