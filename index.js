@@ -4,6 +4,7 @@ var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'A
 var isUnix = /^[1-9][0-9]*$/;
 var isNatural = new RegExp('^(' + months.join('|') + ') ([12]?[0-9]|[0-9]|3[01]), ([1-9][0-9]*)$');
 var badParameterOutput = {'unix': null, 'natural': null};
+var indexPageFile = fs.readFileSync(__dirname + '/public/index.html', 'utf8');
 
 function populateIfIsUnix(parameter) {
 	if (isUnix.test(parameter)) {
@@ -39,16 +40,12 @@ function serveTimestampMicroservice(req, res) {
 	res.end(JSON.stringify(output || badParameterOutput));
 }
 
-fs.readFile(__dirname + '/public/index.html', 'utf8', function (err, data) {
-	if (!err) {
-		http.createServer(function (req, res) {
-			if (req.url === '/') {
-				res.setHeader('Content-Type', 'text/html; charset=utf-8');
-				res.end(data);
-			} else {
-				res.setHeader('Content-Type', 'application/json; charset=utf-8');
-				serveTimestampMicroservice(req, res);
-			}
-		}).listen(process.env.PORT || 5000);
+http.createServer(function (req, res) {
+	if (req.url === '/') {
+		res.setHeader('Content-Type', 'text/html; charset=utf-8');
+		res.end(indexPageFile);
+	} else {
+		res.setHeader('Content-Type', 'application/json; charset=utf-8');
+		serveTimestampMicroservice(req, res);
 	}
-});
+}).listen(process.env.PORT || 5000);
